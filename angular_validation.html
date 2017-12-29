@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+  <title>AnngularJS Forms : Basic Form Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">    
+  <link href="bootstrap-theme.css" rel="stylesheet" />
+    <script>
+        angular.module("demoApp", [])
+            .controller("billCtrl", function ($scope) {
+              $scope.addCustomer = function(customerInfo) {
+                 $scope.status = customerInfo.name
+        + " ( " + customerInfo.emailAdd + ") (" + customer.terms + ") " ;
+            }
+              
+            $scope.status = "All Set";
+            });
+      
+    </script>
+ </head>
+<body>
+<div id="billPayPanel" class="panel" ng-controller="billCtrl">
+    <form name="demoForm" novalidate ng-submit="addCustomer(newCustomer)">
+      <div class="well">
+         <div class="form-group">
+           <label>Name:</label>
+           <input name="userName" type="text" class="form-control"
+                  required ng-model="newCustomer.name">
+        </div>
+        
+         <div class="form-group">
+           <label>Email:</label>
+           <input name="userName" type="text" class="form-control"
+                  required ng-model="newCustomer.emailAdd">
+        </div>
+        
+        <div class="checkbox">
+          <label>
+            <input name="terms" type="checkbox"
+                   ng-model="newCustomer.terms" required>
+            
+            Terms and Condition Agreed
+          </label>
+        </div>
+                
+       <button type="submit" class="btn btn-success btn-block"
+               ng-disabled="demoForm.$invalid">
+                SUBMIT                  
+       </button>
+    </div>
+      
+      <div class="well">
+        <label>Name:</label><p ng-bind="newCustomer.name"></p>
+        <label>Email:</label><p ng-bind="newCustomer.emailAdd"></p>
+        <label>Status:</label><p>{{status}}</p>
+        <label>Validation:</label><p>{{demoForm.$valid}}</p>
+        
+      </div>
+
+  </form>
+  </div>
+            
+</body>
+</html>
